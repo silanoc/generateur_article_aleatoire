@@ -53,7 +53,7 @@ class articlepresse():
         return dicostatique
     
     def cherche_binomes_mots(self):
-        """la fonction principale : faire un dictionnaire de fréquences des mots qui se suivent.
+        """la fonction principale de l'objet : faire un dictionnaire de fréquences des mots qui se suivent.
         
         arg :
             self
@@ -91,9 +91,21 @@ class articlepresse():
                 dicodoublons[liste_mots_suivant[j][0]]=[(liste_mots_suivant[j][1])]
         return dicodoublons    
 
+
 class articleauhasard():
+    """génére un texte aléatoire à partir d'un dictionnaire
+    
+    arg :
+        dictionnaire {mot1:[mot2, mot3, mot3, mot4],...}
+        typiquement le dictionnaire généré par le return de cherche_binomes_mots(), ou d'une sauvegarde issus de cette fonction.
+    
+    return
+        une chaine de texte avec les mots du dictionnaire dans un ordre aléatoire.
+        elle pourra aller dans un doc txt pour sauvegarde
+    """
     pass
-            
+
+
 def testdumoment():
     """3 versions de tailles différentes"""
     textetest1 = "Près de dix ans après la présidentielle de 2012, Nicolas Sarkozy a été condamné jeudi 30 septembre, par le tribunal correctionnel de Paris, à un an de prison ferme pour financement illégal de campagne. Treize autres personnalités étaient également jugées dans ce qu’on appelle l’affaire Bygmalion. L’enquête et le procès ont mis à jour un vaste système de fausses factures impliquant des responsables de Bygmalion et de sa filiale Event & Cie, mais aussi des membres éminents de l’Union pour un mouvement populaire (UMP, devenue Les Républicains en 2015) et de l’équipe de campagne de Nicolas Sarkozy. A quoi correspond « l’affaire Bygmalion » ? Bygmalion, ainsi que sa filiale Event & Cie, est une agence de communication qui a organisé les meetings du candidat Sarkozy en 2012 ainsi que plusieurs conventions pour l’UMP. La société a été dirigée de 2009 à 2013 par Bastien Millot, un proche de Jean-François Copé dont il a été le chef de cabinet à la mairie de Meaux. L’UMP est accusée d’avoir organisé un système de fausses factures afin que les dépenses de campagne de Nicolas Sarkozy pour l’élection présidentielle de 2012 restent inférieures au plafond autorisé par la loi. Une partie des frais occasionnés par la campagne du candidat de la droite n’était pas réglée par l’Association pour le financement de la campagne de Nicolas Sarkozy, comme cela aurait dû être le cas. Bygmalion, l’entreprise prestataire de la campagne, les facturait en réalité à l’UMP, au prétexte d’événements plus ou moins fictifs. Le principe permettait à la campagne de M. Sarkozy de ne pas dépasser le montant de dépenses autorisé, tout en bénéficiant de prestations (l’organisation de meetings, notamment) indûment facturées au parti. Officiellement, au lieu des meetings de campagne, ce sont des conventions thématiques organisées pour l’UMP qui ont été facturées. Les révélations successives dans la presse ont montré que ces dernières représentaient un coût largement exagéré. Certaines n’ont laissé aucun souvenir à leurs participants – des élus de l’UMP –, comme le racontait Libération en révélant l’affaire : elles étaient fictives. L’enquête des juges d’instruction a démontré que le prix réel des 44 meetings organisés par l’agence événementielle Bygmalion avait été drastiquement réduit, 80 % des factures ont disparu. Le Conseil constitutionnel, confirmant une décision de la Commission nationale des comptes de campagne et des financements politiques, avait invalidé en juillet 2013 les comptes du candidat de l’UMP, après avoir constaté un dépassement des plafonds de dépenses autorisés – ce qui avait annulé le remboursement des frais de campagne. Le tribunal a établi que le montant du dépassement des comptes de campagne de Nicolas Sarkozy était de 16 247 509 euros. Qui a été jugé par le tribunal correctionnel ?"
@@ -105,7 +117,6 @@ def testdumoment():
     textetest5 = textetest1 + textetest4
     a = articlepresse(textetest3)
     a.retirer_ponctuation()
-    #print(a.texte)
     print(a.liste_et_compte_mots())
     print(a.cherche_binomes_mots())
     
