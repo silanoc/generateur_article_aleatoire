@@ -6,6 +6,7 @@ modéle
 pour console et fenetre graphique
 """
 
+#AFAIRE : reprendre le code de chercher les mots avec split ???
 
 class articlepresse():
     """chaque article qui servira d'entrée en apprentissage sera mis dans un objet pour analyse, extraction..."""
@@ -39,6 +40,7 @@ class articlepresse():
         dicostatique = {}
         debut = 0
         fin = 0
+        #AFAIRE :Attention il manque le dernier mot
         for i in range (len(self.texte)):
             if self.texte[i] == " ":               
                 fin = i
@@ -67,7 +69,7 @@ class articlepresse():
         #print(list_position_espace)
         #recherche doublons mot
         debut1 = 0
-        for i in range(len(list_position_espace)-2): #ATTENTION ça ne prends pas les deux derniers mot. A vérifier.
+        for i in range(len(list_position_espace)-2): #AFAIRE : ATTENTION ça ne prends pas les deux derniers mot. A vérifier.
             fin1 = list_position_espace[i]
             fin2 = list_position_espace[i+1]
             #print(debut1, fin1,fin2)
@@ -89,6 +91,8 @@ class articlepresse():
                 dicodoublons[liste_mots_suivant[j][0]]=[(liste_mots_suivant[j][1])]
         return dicodoublons    
 
+class articleauhasard():
+    pass
             
 def testdumoment():
     """3 versions de tailles différentes"""
