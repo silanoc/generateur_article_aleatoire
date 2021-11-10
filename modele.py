@@ -35,14 +35,13 @@ class articlepresse():
     
     def cherche_binomes_mots(self):
         liste_mots_suivant = []
-        liste_des_listes_mots_suivant = [[]]
         #recherche des espaces délimitants les mots
         list_position_espace = []
         for i in range(len(self.texte)):
             if self.texte[i] == " ":
                 list_position_espace.append(i)
         #print(list_position_espace)
-        #recherhce doublons mot
+        #recherche doublons mot
         debut1 = 0
         for i in range(len(list_position_espace)-2): #ATTENTION ça ne prends pas les deux derniers mot. A vérifier.
             fin1 = list_position_espace[i]
@@ -53,32 +52,18 @@ class articlepresse():
             debut1 = list_position_espace[i]
             #print(mot1,mot2)
             liste_mots_suivant.append([mot1,mot2])
-        print(liste_mots_suivant)
-        """
-        for j in range(len(liste_mots_suivant)):
-            print(liste_mots_suivant[j][0])
-            if liste_mots_suivant[j] in liste_des_listes_mots_suivant:
-                print('ajout')
-                liste_des_listes_mots_suivant.append(liste_mots_suivant[j][1])
-            else:
-                print('nouveau')
-            liste_des_listes_mots_suivant.append(liste_mots_suivant[j])
-        """ 
-        """
-        for m in range(len(liste_mots_suivant)):
-            for n in range(m+1,len(liste_mots_suivant)):
-                print(liste_mots_suivant[n])
-                print(liste_des_listes_mots_suivant)
-                if liste_mots_suivant[n] in liste_des_listes_mots_suivant:
-                    liste_des_listes_mots_suivant[m].append(liste_mots_suivant[n][1])
-                    liste_mots_suivant.remove(liste_mots_suivant[n])
-                else:
-                    liste_des_listes_mots_suivant.append(liste_mots_suivant[n])
-                if n>len(liste_mots_suivant)+1:
-                    break
-        """
-        print(liste_des_listes_mots_suivant)
         #print(liste_mots_suivant)
+        #fait un dictionnaire avec toutes les occurences possible après un même mot.
+        #les doublons sont normaux, cela veut dire que le mot revient plusieurs fois, cela correspond au calcul de leur fréquence
+        dicodoublons={}
+        for j in range(len(liste_mots_suivant)):
+            if liste_mots_suivant[j][0] in dicodoublons.keys():
+                #print('doublons')
+                dicodoublons[liste_mots_suivant[j][0]].append(liste_mots_suivant[j][1])
+            else:
+                #print('nouveau')
+                dicodoublons[liste_mots_suivant[j][0]]=[(liste_mots_suivant[j][1])]
+        print(dicodoublons)     
 
             
 def testdumoment():
