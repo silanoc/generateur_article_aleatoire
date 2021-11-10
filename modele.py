@@ -12,22 +12,30 @@ class articlepresse():
     
     def __init__(self, text):
         """initilisation
-        - arg: une chaine de texte (si possible longue)
+        
+        arg: 
+            une chaine de texte (si possible longue)
         """
         self.texte = text
     
     def retirer_ponctuation(self):
         """ La première version du logiciel est sommaire. Pour se simplifier la vie, il faut supprimer tous les signe de ponctuations.
-        Il n'y a ni entrée (arg) ni sortie (return), c'est 'juste' une modification sur l'objet"""
+        
+        Il n'y a ni entrée (arg) ni sortie (return), c'est 'juste' une modification sur l'objet
+        """
         ponctuation = [",",";",":","!","?",".","/","«","»",'"',"–"]
         for c in ponctuation:
             self.texte = self.texte.replace(c, "")
     
     def liste_et_compte_mots(self):
         """Compte le nombre d'occurence d'un mot.
-        créé un peu par erreur, mais peu être utile pour faire des statistiques.
-        arg : self
-        return : dictionnaire {mot:nb}"""
+        Fonction créée un peu par erreur, mais elle peut être utile pour faire des statistiques.
+        
+        arg : 
+            self
+        return : 
+            dictionnaire {mot:nb,...}
+        """
         dicostatique = {}
         debut = 0
         fin = 0
@@ -43,6 +51,13 @@ class articlepresse():
         return dicostatique
     
     def cherche_binomes_mots(self):
+        """la fonction principale : faire un dictionnaire de fréquences des mots qui se suivent.
+        
+        arg :
+            self
+        return :
+            dictionnaire {mot1:[mot2, mot3, mot3, mot4],...}
+        """
         liste_mots_suivant = []
         #recherche des espaces délimitants les mots
         list_position_espace = []
@@ -72,7 +87,7 @@ class articlepresse():
             else:
                 #print('nouveau')
                 dicodoublons[liste_mots_suivant[j][0]]=[(liste_mots_suivant[j][1])]
-        print(dicodoublons)     
+        return dicodoublons    
 
             
 def testdumoment():
@@ -88,7 +103,7 @@ def testdumoment():
     a.retirer_ponctuation()
     #print(a.texte)
     print(a.liste_et_compte_mots())
-    a.cherche_binomes_mots()
+    print(a.cherche_binomes_mots())
     
 
 def main():
