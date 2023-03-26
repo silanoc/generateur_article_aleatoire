@@ -48,7 +48,7 @@ class articlepresse():
         arg : 
             self
         return : 
-            dictionnaire {mot:nb,...}
+            [liste[mot1,mot2,,...],dictionnaire {mot:nb,...}]
         #>>> liste_et_compte_mots("le petit chat de béatrice est sur le petit mur du jardin de Yves")
         #['le','petit','chat','de','béatrice','est','sur','le','petit','mur','du','jardin','de','Yves']
         #[['le','petit','chat','de','béatrice','est','sur','le','petit','mur','du','jardin','de','Yves'],{'le':2,'petit':2,'chat':1,'de':2,'béatrice':1,'est':1,'sur':1,'mur':1,'du':1,'jardin':1,'Yves':1}]
@@ -60,18 +60,6 @@ class articlepresse():
             else:
                 self.dicostatique[mot] = 1
         return [self.liste_mot, self.dicostatique]
-        
-        """
-        for i in range (len(self.texte)):
-            if self.texte[i] == " ":               
-                fin = i
-                mot = self.texte[debut:fin]
-                if mot in self.dicostatique:
-                    self.dicostatique[mot] += 1
-                else:
-                    self.dicostatique[mot] = 1
-                debut = i+1
-        """
     
     def cherche_binomes_mots(self):
         """la fonction principale de l'objet : faire un dictionnaire de fréquences des mots qui se suivent.

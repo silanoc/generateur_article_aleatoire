@@ -39,8 +39,8 @@ Effet attendu, texte +- cohérent selon si les sources sont proches ou pas. L'ef
 - Logiciel graphique.py
 
 ## Ressources, cours openclasseroom
-- nom du cours
-    - Tous possède un main init
+- https://openclassrooms.com/fr/courses/4425111-perfectionnez-vous-en-python/4463200-organisez-un-script
+    - Tous les fichiers possèdent un main init
     - Utf8
 - bibliothèque perso ?
 - Test unitaires et co
