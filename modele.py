@@ -6,6 +6,8 @@ modéle
 pour console et fenetre graphique
 """
 
+import random
+
 from texts_de_test import *
 from dico_de_test import *
 
@@ -124,31 +126,54 @@ class articleauhasard():
             elle pourra aller dans un doc txt pour sauvegarde
     """
 
-    def __init__(self, mondico):
+    def __init__(self, mondico:dict):
         """initilisation
         
             arg: 
                 une chaine de texte (si possible longue)
         """
-        self.mondico = mondico #le dictionnaire sur lequel on travail
-        self.textealeatoire="" #le texte que l'on veut
+        self.mondico: dict = mondico #le dictionnaire sur lequel on travail
+        self.textealeatoire : str ="" #le texte que l'on veut
     
-    def choixmotpourcommencer(self):
-        """a utiliser pour le premier mot, mais aussi si un mot ne peut pas en trouver d'autre, faire une proposition piour eviter une erreur et continuer """
-        pass
+    def choixmotpourcommencer(self, dico: dict)-> str:
+        """a utiliser pour le premier mot, mais aussi si un mot ne peut pas en trouver d'autre, faire une proposition pour eviter une erreur et continuer """
+        #Mettre les clefs dans une liste
+        liste_des_mots : list = []
+        for key in dico:
+            liste_des_mots.append(key)
+        #choix lui meme
+        mot: str = liste_des_mots[random.randint(0, len(liste_des_mots))]
+        #retirer l'espace s'il existe
+        if mot[0] == " ":
+            mot = mot[1:]
+        return mot      
 
-    def chercherlemotsuivant(self):
+    def chercherlemotsuivant(self, dico, mot):
         """à partir d'un mot, sortir aléatoire un mot dans ceux pouvant le suivre"""
-        pass
+        liste_des_possible: list = dico[" " + mot]
+        mot: str = liste_des_possible[random.randint(0, len(liste_des_possible) -1 )]
+        #retirer l'espace s'il existe
+        if mot[0] == " ":
+            mot = mot[1:]
+        return mot      
     
-    def genereruntexte(self):
+    def genereruntexte(self, taille_article):
         """intier avec choixmotpourcommencer(), puis enchainer chercherlemotsuivant() """
-        pass
-   
-
+        mot = self.choixmotpourcommencer(self.mondico)
+        self.textealeatoire += mot
+        for _ in range(taille_article - 1):
+            new_mot = self.chercherlemotsuivant(self.mondico, mot)
+            mot = new_mot
+            self.textealeatoire = self.textealeatoire + " " + mot
+            
+        
 def main():
-    a = articlepresse(textetest2)
-    a.tout_enchainer()
+    #a = articlepresse(textetest2)
+    #a.tout_enchainer()
+    
+    b = articleauhasard(dicotest1)
+    b.genereruntexte(30)
+    print(b.textealeatoire)
     
 
 if __name__ == "__main__":
