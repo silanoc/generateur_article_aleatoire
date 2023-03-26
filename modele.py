@@ -27,23 +27,26 @@ class articlepresse():
         self.dicostatique = {} #pour la fonction liste_et_compte_mots
         self.dicodoublons = {} #pour la fonction cherche_binomes_mots - ce qui est recherché
     
-    def retirer_ponctuation(self):
+    def retirer_ponctuation(self, txt_a_nettoyer:str) -> str:
         """ La première version du logiciel est sommaire. Pour se simplifier la vie, il faut supprimer tous les signe de ponctuations.
         
-        Il n'y a ni entrée (arg) ni sortie (return), c'est 'juste' une modification sur l'objet
+        arg:
+            une chaine de texte avec de la ponctuation
+        return:
+            une chaine de texte sans ponctuation
         """
-        ponctuation = [",",";",":","!","?",".","/","«","»",'"',"–","(",")"]
-        for c in ponctuation:
-            self.texte = self.texte.replace(c, "")
+        ponctuation:list = [",",";",":","!","?",".","/","«","»",'"',"–","(",")"]
+        for signe in ponctuation:
+            txt_a_nettoyer = txt_a_nettoyer.replace(signe, "")
         #mettre un espace entre les mots avec apostrophe afin de bien les séparer
         apostrophe = ["’","'"]
-        for d in apostrophe:
-            self.texte = self.texte.replace(d, " ")
+        for apost in apostrophe:
+            txt_a_nettoyer = txt_a_nettoyer.replace(apost, " ")
         #quand on supprime un : par exemple, cela fait deux espace. Remplacer ces artefacts de cagage
-        for i in range(len(self.texte)):
-            self.texte = self.texte.replace("  ", " ")
+        for _ in range(len(self.texte)):
+            txt_a_nettoyer = txt_a_nettoyer.replace("  ", " ")
+        return txt_a_nettoyer
 
-    
     def liste_et_compte_mots(self,texte_a_traiter):
         """Compte le nombre d'occurence d'un mot.
         Fonction créée un peu par erreur, mais elle peut être utile pour faire des statistiques.
@@ -140,7 +143,7 @@ def testarticledepresse():
     """3 versions de tailles différentes"""
     #enchainement logique
     a = articlepresse(textetest2)
-    a.retirer_ponctuation()
+    a.texte = a.retirer_ponctuation(a.texte)
     a.liste_et_compte_mots(a.texte)
     print(a.dicostatique)
     #a.cherche_binomes_mots()
