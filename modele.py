@@ -4,6 +4,8 @@
 """
 modéle
 pour console et fenetre graphique
+
+Warning : attention aux espaces
 """
 
 import random
@@ -103,15 +105,15 @@ class articlepresse():
             else:
                 #print('nouveau')
                 dicodoublons[liste_mots_suivant[j][0]]=[(liste_mots_suivant[j][1])]
+        # Warning : il y a des espace en trop (tenu en compte pour le reste et tests)
         return dicodoublons 
     
-    def tout_enchainer(self):
+    def tout_enchainer(self) -> None :
         self.texte = self.retirer_ponctuation(self.texte)
         #self.dicostatique = self.liste_et_compte_mots(self.texte)[1]
         #print(self.dicostatique)
         #print("--------------")
         self.dicodoublons = self.cherche_binomes_mots(self.texte)
-        print(self.dicodoublons)
         
 
 class articleauhasard():
@@ -148,21 +150,22 @@ class articleauhasard():
             mot = mot[1:]
         return mot      
 
-    def chercherlemotsuivant(self, dico, mot):
-        """à partir d'un mot, sortir aléatoire un mot dans ceux pouvant le suivre"""
-        liste_des_possible: list = dico[" " + mot]
+    def chercherlemotsuivant(self, dico: dict, mot: str) -> str:
+        """à partir d'un mot, sortir aléatoire un mot dans ceux pouvant le suivre stocké dans le dictionnaire"""
+        liste_des_possible: list = dico[" " + mot] #WARNING on remet un espace car dans la version du moment, il y a un espace dans le dico et c'est pas bien
         mot: str = liste_des_possible[random.randint(0, len(liste_des_possible) -1 )]
         #retirer l'espace s'il existe
         if mot[0] == " ":
             mot = mot[1:]
         return mot      
     
-    def genereruntexte(self, taille_article):
-        """intier avec choixmotpourcommencer(), puis enchainer chercherlemotsuivant() """
-        mot = self.choixmotpourcommencer(self.mondico)
+    def genereruntexte(self, taille_article: int) -> None:
+        """intier avec choixmotpourcommencer(), puis enchainer chercherlemotsuivant()
+        taille_article est le nombre de mot que l'on veut pour l'article aléatoire"""
+        mot: str = self.choixmotpourcommencer(self.mondico)
         self.textealeatoire += mot
         for _ in range(taille_article - 1):
-            new_mot = self.chercherlemotsuivant(self.mondico, mot)
+            new_mot: str = self.chercherlemotsuivant(self.mondico, mot)
             mot = new_mot
             self.textealeatoire = self.textealeatoire + " " + mot
             
@@ -170,8 +173,9 @@ class articleauhasard():
 def main():
     #a = articlepresse(textetest2)
     #a.tout_enchainer()
+    #print(a.dicodoublons)
     
-    b = articleauhasard(dicotest1)
+    b = articleauhasard(dicotest2)
     b.genereruntexte(30)
     print(b.textealeatoire)
     
