@@ -169,14 +169,23 @@ class articleauhasard():
             mot = new_mot
             self.textealeatoire = self.textealeatoire + " " + mot
             
-def addition_dico(grand_dico, petit_dico)-> dict:
-    pass
+def addition_dico(grand_dico : dict, petit_dico : dict)-> dict:
+    for keys, values in petit_dico.items():
+        if keys in grand_dico:
+            liste_intermediaire = grand_dico[keys]
+            for item in values:
+                liste_intermediaire.append(item)
+            grand_dico[keys] = liste_intermediaire
+        else:
+            grand_dico[keys] = values
+    return grand_dico
  
 def main():
     #a = articlepresse(textetest2)
     #a.tout_enchainer()
     #print(a.dicodoublons)
     
+
     b = articleauhasard(dicotest2)
     b.genereruntexte(30)
     print(b.textealeatoire)
