@@ -15,6 +15,21 @@ from dico_de_test import *
 
 #AFAIRE : reprendre le code de chercher les mots avec split ???
 
+class gestionfichier():
+    def lister_fichier()-> list:
+        """Liste de chemin des fichier"""
+        tousleschemins : list = []
+        return tousleschemins
+ 
+    def lirefichier(chemin)-> str:
+        """ouvre un fichier et transfert son contenue dans une chaine"""
+        contenu_du_fichier = []
+        return contenu_du_fichier
+
+    def ecrirefichier(nom, contenu)->None:
+        """ecrit un chaine dans un fichier"""
+        pass
+
 class articlepresse():
     """chaque article qui servira d'entrée en apprentissage sera mis dans un objet pour analyse, extraction..."""
     
@@ -185,7 +200,6 @@ def main():
     #a.tout_enchainer()
     #print(a.dicodoublons)
     
-
     b = articleauhasard(dicotest2)
     b.genereruntexte(30)
     print(b.textealeatoire)
