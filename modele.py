@@ -169,7 +169,9 @@ class articleauhasard():
             mot = new_mot
             self.textealeatoire = self.textealeatoire + " " + mot
             
-        
+def addition_dico(grand_dico, petit_dico)-> dict:
+    pass
+ 
 def main():
     #a = articlepresse(textetest2)
     #a.tout_enchainer()

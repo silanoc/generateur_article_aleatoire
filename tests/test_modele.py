@@ -41,3 +41,9 @@ class Test_modele_generation():
         generation = articleauhasard(dictionnaire)
         generation.mot = generation.choixmotpourcommencer(dictionnaire)
         assert generation.mot == "petit"
+        
+def test_addition_dico():
+    dico1 = {'a' : ['le', 'petit'], 'b' : ['chat', 'de']}
+    dico2 = {'b' : ['de', 'yves'], 'c' : ['dans', 'jardin']}
+    dico3 = addition_dico(dico1, dico2)
+    assert dico3 == {'a' : ['le', 'petit'], 'b' : ['chat', 'de', 'de', 'yves'], 'c' : ['dans', 'jardin']}
