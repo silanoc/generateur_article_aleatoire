@@ -9,6 +9,7 @@ Warning : attention aux espaces
 """
 
 import random
+import os
 
 from texts_de_test import *
 from dico_de_test import *
@@ -16,10 +17,20 @@ from dico_de_test import *
 #AFAIRE : reprendre le code de chercher les mots avec split ???
 
 class gestionfichier():
-    def lister_fichier()-> list:
-        """Liste de chemin des fichier"""
-        tousleschemins : list = []
+    def lister_fichier(source : str)-> list:
+        """pour tous les fichiers du dossier, 
+        on fait confiance qu'il ne s'agit que d'un texte,
+        mettre tous les noms dans une liste
+        arg
+        - source (str) : chemin du dossier
+        return
+        - tousleschemins(liste) : liste avec les nom des image dans la source
+        """
+        tousleschemins: list = []
+        for fichier in os.listdir(source):
+            tousleschemins.append(fichier)
         return tousleschemins
+
  
     def lirefichier(chemin)-> str:
         """ouvre un fichier et transfert son contenue dans une chaine"""
