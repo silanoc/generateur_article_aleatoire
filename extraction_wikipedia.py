@@ -7,7 +7,7 @@ import random
 wikipedia.set_lang("fr")  
 
 # Définir le nombre d'articles à extraire
-num_articles = 10
+num_articles = 100
 
 # Obtenir une liste aléatoire de titres d'articles
 titles = wikipedia.random(num_articles)

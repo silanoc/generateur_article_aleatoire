@@ -17,7 +17,7 @@ from dico_de_test import *
 #AFAIRE : reprendre le code de chercher les mots avec split ???
 
 class gestionfichier():
-    def lister_fichier(source : str)-> list:
+    def lister_fichier(self, source : str)-> list:
         """pour tous les fichiers du dossier, 
         on fait confiance qu'il ne s'agit que d'un texte,
         mettre tous les noms dans une liste
@@ -28,16 +28,19 @@ class gestionfichier():
         """
         tousleschemins: list = []
         for fichier in os.listdir(source):
-            tousleschemins.append(fichier)
+            tousleschemins.append("vrai_texte/wikipedia/" + fichier)
         return tousleschemins
 
  
-    def lirefichier(chemin)-> str:
+    def lirefichier(self, chemin)-> str:
         """ouvre un fichier et transfert son contenue dans une chaine"""
         contenu_du_fichier = []
+        fichier = open(chemin, 'r')
+        contenu_du_fichier = fichier.read()
         return contenu_du_fichier
-
-    def ecrirefichier(nom, contenu)->None:
+    
+    
+    def ecrirefichier(self, nom, contenu)->None:
         """ecrit un chaine dans un fichier"""
         pass
 
@@ -134,12 +137,13 @@ class articlepresse():
         # Warning : il y a des espace en trop (tenu en compte pour le reste et tests)
         return dicodoublons 
     
-    def tout_enchainer(self) -> None :
+    def tout_enchainer(self) -> dict :
         self.texte = self.retirer_ponctuation(self.texte)
         #self.dicostatique = self.liste_et_compte_mots(self.texte)[1]
         #print(self.dicostatique)
         #print("--------------")
-        self.dicodoublons = self.cherche_binomes_mots(self.texte)
+        dicodoublons_txt = self.cherche_binomes_mots(self.texte)
+        return dicodoublons_txt
         
 
 class articleauhasard():
@@ -194,6 +198,7 @@ class articleauhasard():
             new_mot: str = self.chercherlemotsuivant(self.mondico, mot)
             mot = new_mot
             self.textealeatoire = self.textealeatoire + " " + mot
+        
             
 def addition_dico(grand_dico : dict, petit_dico : dict)-> dict:
     for keys, values in petit_dico.items():
@@ -205,15 +210,35 @@ def addition_dico(grand_dico : dict, petit_dico : dict)-> dict:
         else:
             grand_dico[keys] = values
     return grand_dico
+
+def analyser_dossier_et_faire_dico() -> dict:
+    gestionnaire = gestionfichier()
+    lesfichichiers = gestionnaire.lister_fichier("vrai_texte/wikipedia")
+    #print(lesfichichiers)
+    dict_statistique = {}
+    for item in lesfichichiers:
+        contenu_a_analyser = gestionnaire.lirefichier(item)
+        analyseur = articlepresse(contenu_a_analyser)
+        dico_item = analyseur.tout_enchainer()
+        dict_statistique = addition_dico(dict_statistique, dico_item)
+    return dict_statistique
+            
  
 def main():
     #a = articlepresse(textetest2)
     #a.tout_enchainer()
     #print(a.dicodoublons)
     
-    b = articleauhasard(dicotest2)
-    b.genereruntexte(30)
-    print(b.textealeatoire)
+    #b = articleauhasard(dicotest2)
+    #b.genereruntexte(30)
+    #print(b.textealeatoire)
+    
+    superdico = analyser_dossier_et_faire_dico()
+    redacteur = articleauhasard(superdico)
+    redacteur.genereruntexte(250)
+    print(redacteur.textealeatoire)
+    
+
     
 
 if __name__ == "__main__":
