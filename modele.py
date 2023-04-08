@@ -16,7 +16,9 @@ from dico_de_test import *
 
 #AFAIRE : reprendre le code de chercher les mots avec split ???
 
-class gestionfichier():
+class Gestionfichier():
+    """classe pour gérer les dossiers et fichiers"""
+    
     def lister_fichier(self, source : str)-> list:
         """pour tous les fichiers du dossier, 
         on fait confiance qu'il ne s'agit que d'un texte,
@@ -32,11 +34,14 @@ class gestionfichier():
         return tousleschemins
 
  
-    def lirefichier(self, chemin)-> str:
-        """ouvre un fichier et transfert son contenue dans une chaine"""
-        contenu_du_fichier = []
+    def lirefichier(self, chemin: str)-> str:
+        """ouvre un fichier et transfert son contenue dans une chaine
+        arg
+        - chemin (str) : chemin du dossier
+        return
+        - contenu_du_fichier (str) : le contenu du fichier"""
         fichier = open(chemin, 'r')
-        contenu_du_fichier = fichier.read()
+        contenu_du_fichier: str = fichier.read()
         return contenu_du_fichier
     
     
@@ -44,7 +49,7 @@ class gestionfichier():
         """ecrit un chaine dans un fichier"""
         pass
 
-class articlepresse():
+class Article_source():
     """chaque article qui servira d'entrée en apprentissage sera mis dans un objet pour analyse, extraction..."""
     
     def __init__(self, text):
@@ -59,14 +64,14 @@ class articlepresse():
         self.dicodoublons:dict = {} #pour la fonction cherche_binomes_mots - ce qui est recherché
     
     def retirer_ponctuation(self, txt_a_nettoyer:str) -> str:
-        """ La première version du logiciel est sommaire. Pour se simplifier la vie, il faut supprimer tous les signe de ponctuations.
-        
+        """ La première version du logiciel est sommaire. 
+        Pour se simplifier la vie, il faut supprimer tous les signe de ponctuations.
         arg:
             une chaine de texte avec de la ponctuation
         return:
             une chaine de texte sans ponctuation
         """
-        ponctuation:list = [",",";",":","!","?",".","/","«","»",'"',"–","(",")"]
+        ponctuation : list = [",",";",":","!","?",".","/","«","»",'"',"–","(",")"]
         for signe in ponctuation:
             txt_a_nettoyer = txt_a_nettoyer.replace(signe, "")
         #mettre un espace entre les mots avec apostrophe afin de bien les séparer
@@ -98,8 +103,7 @@ class articlepresse():
         return [liste_mot, dicostatistique]
     
     def cherche_binomes_mots(self, texte_a_traiter:str) -> dict:
-        """la fonction principale de l'objet : faire un dictionnaire de fréquences des mots qui se suivent.
-        
+        """la fonction principale de l'objet : faire un dictionnaire de fréquences des mots qui se suivent. 
         arg :
             self
         return :
@@ -146,7 +150,7 @@ class articlepresse():
         return dicodoublons_txt
         
 
-class articleauhasard():
+class Article_au_hasard():
     """génére un texte aléatoire à partir d'un dictionnaire
     
         arg :
@@ -160,15 +164,16 @@ class articleauhasard():
 
     def __init__(self, mondico:dict):
         """initilisation
-        
-            arg: 
-                une chaine de texte (si possible longue)
+        arg: 
+            mondico (dict) : pour chaque mot en cle dedans, il y a une liste de mot possible.
         """
         self.mondico: dict = mondico #le dictionnaire sur lequel on travail
         self.textealeatoire : str ="" #le texte que l'on veut
     
     def choixmotpourcommencer(self, dico: dict)-> str:
-        """a utiliser pour le premier mot, mais aussi si un mot ne peut pas en trouver d'autre, faire une proposition pour eviter une erreur et continuer """
+        """a utiliser pour le premier mot, 
+        mais aussi si un mot ne peut pas en trouver d'autre, faire une proposition pour eviter une erreur et continuer
+        """
         #Mettre les clefs dans une liste
         liste_des_mots : list = []
         for key in dico:
@@ -191,7 +196,8 @@ class articleauhasard():
     
     def genereruntexte(self, taille_article: int) -> None:
         """intier avec choixmotpourcommencer(), puis enchainer chercherlemotsuivant()
-        taille_article est le nombre de mot que l'on veut pour l'article aléatoire"""
+        taille_article est le nombre de mot que l'on veut pour l'article aléatoire
+        """
         mot: str = self.choixmotpourcommencer(self.mondico)
         self.textealeatoire += mot
         for _ in range(taille_article - 1):
@@ -201,6 +207,8 @@ class articleauhasard():
         
             
 def addition_dico(grand_dico : dict, petit_dico : dict)-> dict:
+    """Permet de mettre le contenu d'un dictionnaire dans un autre.
+    Si dans les deux dic, il y a une clef commune, il concatène les deux listes de mot"""
     for keys, values in petit_dico.items():
         if keys in grand_dico:
             liste_intermediaire = grand_dico[keys]
@@ -211,35 +219,33 @@ def addition_dico(grand_dico : dict, petit_dico : dict)-> dict:
             grand_dico[keys] = values
     return grand_dico
 
-def analyser_dossier_et_faire_dico() -> dict:
-    gestionnaire = gestionfichier()
-    lesfichichiers = gestionnaire.lister_fichier("vrai_texte/wikipedia")
+
+def analyser_dossier_et_faire_dico(source : str) -> dict:
+    """Pour tous les fichiers d'un dossier, 
+    lire le contenue, en faire le dictionnaire 
+    et fusionner tous les dictionnaire en un seul.
+    arg:
+    - source (str) : chemin d'un dossier
+    return:
+    - dict_statistique (dict)
+    """
+    gestionnaire =Gestionfichier()
+    lesfichichiers = gestionnaire.lister_fichier(source)
     #print(lesfichichiers)
     dict_statistique = {}
     for item in lesfichichiers:
         contenu_a_analyser = gestionnaire.lirefichier(item)
-        analyseur = articlepresse(contenu_a_analyser)
+        analyseur = Article_source(contenu_a_analyser)
         dico_item = analyseur.tout_enchainer()
         dict_statistique = addition_dico(dict_statistique, dico_item)
     return dict_statistique
             
- 
 def main():
-    #a = articlepresse(textetest2)
-    #a.tout_enchainer()
-    #print(a.dicodoublons)
-    
-    #b = articleauhasard(dicotest2)
-    #b.genereruntexte(30)
-    #print(b.textealeatoire)
-    
-    superdico = analyser_dossier_et_faire_dico()
-    redacteur = articleauhasard(superdico)
+    """A partir des fichiers de 'vrai_texte/wikipedia', génére un texte de 250 mots."""
+    superdico = analyser_dossier_et_faire_dico("vrai_texte/wikipedia")
+    redacteur = Article_au_hasard(superdico)
     redacteur.genereruntexte(250)
     print(redacteur.textealeatoire)
     
-
-    
-
 if __name__ == "__main__":
     main()
