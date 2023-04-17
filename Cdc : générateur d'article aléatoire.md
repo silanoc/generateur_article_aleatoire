@@ -1,30 +1,30 @@
 # Cdc : générateur d'article aléatoire
 auteur : Gabriel-le
-création : 1 nobembre 2021
+création : 1 novembre 2021
 
 ## Contexte 
-- C'est un projet perso pour m'améliorer , écrire un cahier des charge et écrire un programme avec du hasard dans un esprit de traitement du langage.
-- Premier CDC pour un code perso. Il est  mélangé au cahier des spécificités techniques. Car pas encore à l'aise pour séparer, plus simple..., Projet perso mono personne et sert a structurer ma penser avant de coder
+- C'est un projet perso pour m'améliorer, écrire un cahier des charges et écrire un programme avec du hasard dans un esprit de traitement du langage.
+- Premier CDC pour un code perso. Il est mélangé au cahier des spécificités techniques. Car je ne suis pas encore à l'aise pour séparer, plus simple..., 
+- Projet perso mono personne et sert à structurer ma pensée avant de coder
 
 ## Objectifs : 
-- On donne pleins d'articles sur un sujet (exemple affaire bigmalion) et on génère un article aléatoire.
-Effet attendu, texte +- cohérent selon si les sources sont proches ou pas. L'effet peut être étonnant si on mélange politique, sciences...
+- On donne plein d'articles sur un sujet (exemple affaire Bigmalion) et on génère un article aléatoire.
+- Effet attendu, texte +- cohérent si les sources sont proches ou pas. L'effet peut être étonnant si on mélange politique, sciences...
 
 ## Périmètre : 
 - Pour moi. 
 - Pour présenter le code à d'autres.
-- En version améliorée pour d'autre utilisataires.
+- En version améliorée pour d'autres utilisataires.
 
 ## Intelligence du système :
-- nulle a faible. Il s'agit uniquement de probabilité. Après un mot il y a 50 % d'un autre, 25% d'un autres ...
-- améliorations avec grammaire, gestion nom propres...
-
+- nulle à faible. Il s'agit uniquement de probabilité. Après un mot il y a 50 % d'un autre, 25% d'un autres ...
+- améliorations avec grammaire, gestion noms propres...
 
 ## Architecture :
 - Un dossier pour mettre tous les articles à analyser
 - Un dossier pour les textes générés
     - Textes de sortie : horodatage+"txt_genere.txt" pour éviter même nom
-- un dossier avec les fichier avec les fréquences des mots suivants (json (?) )
+- un dossier avec les fichiers avec les fréquences des mots suivants (json (?) )
 - Affichage :
     - console
     - interface graphique
@@ -45,7 +45,7 @@ Effet attendu, texte +- cohérent selon si les sources sont proches ou pas. L'ef
 - bibliothèque perso ?
 - Test unitaires et co
 
-## spécificités
+## Spécificités
 ### Entrée
 - 1 txt
 - Plusieurs txt
@@ -53,15 +53,15 @@ Effet attendu, texte +- cohérent selon si les sources sont proches ou pas. L'ef
 ### Sortie
 - Écran
 - Fichier txt PDF
-- Faire un ou plusieur textes
+- Faire un ou plusieurs textes
 ### Gestion de la ponctuation
 Version test : non géré, la supprimer
 Version améliorée : prise en compte
 ### Texte généré
-- Quel est le premier mot ? Hasard, les plus fréquent
+- Quel est le premier mot ? Hasard, les plus fréquents
 - Taille ? Hasard, moyenne, le plus grand, le plus petit ? -> besoin de le mesurer stocker
-### vérificabilité 
-- l'analayse doit pouvoir dire à partuir de quel(s) texte ça a été produit
+### vérifiabilité 
+- l'analyse doit pouvoir dire à partir de quel(s) texte ça a été produit
 - le texte généré doit pouvoir dire quelle base a été utilisé 
 ### programmation objet
 - Chaque texte analysé est un objet,
@@ -71,12 +71,12 @@ Version améliorée : prise en compte
 - Analyser un texte et le mettre dans un fichier 
 - Analyser une collection et le mettre dans un fichier 
 - Ouvrir, compléter, sauver une analyse, 
-- Génere à partir d'une analyse
+- Génerer à partir d'une analyse
 - Générer à partir d'une collection
-- exporet les résultats
+- expoter les résultats
 ## Ordre de développement
 - Analyser et générer un texte
-- Interface minimale console
+- Interface minimale dans une console
 - Exporter texte
 - Générer/exporter plusieurs textes
 - Analyser plusieurs textes
