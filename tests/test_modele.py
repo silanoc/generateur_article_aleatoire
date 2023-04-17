@@ -10,13 +10,13 @@ class Test_modele_analyse():
     
     def test_retirer_ponctuation(self):
         chaine = "Le, petit chat d'Hercule est mort !"
-        textdebase = articlepresse(chaine)
+        textdebase = Article_source(chaine)
         retirer = textdebase.retirer_ponctuation(chaine)
         assert retirer == "Le petit chat d Hercule est mort "
         
     def test_liste_et_compte_mots(self):
         chaine = "le petit chat de béatrice est sur le petit mur du jardin de Yves"
-        textdebase = articlepresse(chaine)
+        textdebase = Article_source(chaine)
         list_mot = textdebase.liste_et_compte_mots(chaine)[0]
         dico_mot = textdebase.liste_et_compte_mots(chaine)[1]
         assert list_mot == ['le','petit','chat','de','béatrice','est','sur','le','petit','mur','du','jardin','de','Yves']
@@ -25,7 +25,7 @@ class Test_modele_analyse():
     """   
     def test_cherche_binomes_mots(self):
         chaine = "le petit chat de béatrice est sur le petit mur du jardin de Yves"
-        textdebase = articlepresse(chaine)
+        textdebase = Article_source(chaine)
         dico = textdebase.cherche_binomes_mots(chaine)
         assert dico == {' le': [' petit', ' petit'], ' petit':[' chat', ' mur'], ' chat': [' de'], ' de': [' béatrice', ' Yves'], ' béatrice': [' est'],
                         ' est': [' sur'], ' sur': [' le'], ' mur': [' du'], ' du': [' jardin'], ' jardin': [' de'], ' Yves': []}
