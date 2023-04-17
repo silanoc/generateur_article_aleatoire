@@ -244,7 +244,7 @@ def main():
     """A partir des fichiers de 'vrai_texte/wikipedia', génére un texte de 250 mots."""
     superdico = analyser_dossier_et_faire_dico("vrai_texte/wikipedia")
     redacteur = Article_au_hasard(superdico)
-    redacteur.genereruntexte(250)
+    redacteur.genereruntexte(1000)
     print(redacteur.textealeatoire)
     
 if __name__ == "__main__":
