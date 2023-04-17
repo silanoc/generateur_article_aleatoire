@@ -1,18 +1,10 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
-"""
-modéle
-pour console et fenetre graphique
-
-Warning : attention aux espaces
-"""
-
 import random
 import os
 
-from texts_de_test import *
-from dico_de_test import *
+"""Ensemble de classes et de fonctions pour faire des textes aléatoires à partir d'autres textes"""
 
 #AFAIRE : reprendre le code de chercher les mots avec split ???
 
