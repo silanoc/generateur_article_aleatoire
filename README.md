@@ -1,4 +1,4 @@
-# generateur_article_aleatoire
+# generateur d'article aleatoire
 - auteur : Silanoc
 - première version en novembre 2021
 - reprise en mars 2023
