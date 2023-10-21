@@ -8,7 +8,9 @@ Suite à l'écoute de l'émission "libre à vous" consacré à la suite logiciel
 https://cause-commune.fm/podcast/libre-a-vous-172/
 
 Ainsi avec le requiements.txt, seul le fichier generateur_article.ipynb est nécessaire à lire/éxécuter.
-`pip install -r requiements.txt
+
+``pip install -r requiements.txt``
 
 Lancement en ligne de commande
-`jupyter notebook generateur_article.ipynb
+
+``jupyter notebook generateur_article.ipynb``
