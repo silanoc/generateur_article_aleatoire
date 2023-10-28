@@ -7,10 +7,27 @@
 Suite à l'écoute de l'émission "libre à vous" consacré à la suite logicielle Jupyter (que je connaissais), le code a été transféré dans un notebook, ainsi que les tests.
 https://cause-commune.fm/podcast/libre-a-vous-172/
 
+## Installation
+
 Ainsi avec le requiements.txt, seul le fichier generateur_article.ipynb est nécessaire à lire/éxécuter.
 
 ``pip install -r requiements.txt``
 
+## Ouverture
 Lancement en ligne de commande
 
 ``jupyter notebook generateur_article.ipynb``
+
+## Architecture
+- generateur_article.ipynb : notebook centrale
+- README.txt
+- requiements.txt
+- Cdc
+- vrai_texte
+- statics
+- textes_generes
+
+## Liste des versions
+- V1 : Console
+- V2.0 : Jupyter
+- V2.1 : Jupiter interactif

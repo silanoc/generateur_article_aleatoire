@@ -1,6 +1,7 @@
 # Cdc : générateur d'article aléatoire
 auteur : Gabriel-le
 création : 1 novembre 2021
+refonte : 2023-10/28
 
 ## Contexte 
 - C'est un projet perso pour m'améliorer, écrire un cahier des charges et écrire un programme avec du hasard dans un esprit de traitement du langage.
@@ -17,26 +18,30 @@ création : 1 novembre 2021
 - En version améliorée pour d'autres utilisataires.
 
 ## Intelligence du système :
-- nulle à faible. Il s'agit uniquement de probabilité. Après un mot il y a 50 % d'un autre, 25% d'un autresdeuxième et 25% d'une troisième ...
+- nulle à faible. Il s'agit uniquement de probabilité. Après un mot il y a 50 % d'un autre, 25% d'un autres deuxième et 25% d'une troisième ...
 - améliorations avec grammaire, gestion noms propres...
 
 ## Architecture :
-- Un dossier pour mettre tous les articles à analyser
-- Un dossier pour les textes générés
-    - Textes de sortie : horodatage+"txt_genere.txt" pour éviter même nom
+- Un dossier pour mettre tous les articles à analyser : 'vrai_texte'
+- Un dossier pour les textes générés 'textes_generes'
+    - [x] Textes de sortie : horodatage+".txt" pour éviter même nom
 - un dossier avec les fichiers avec les fréquences des mots suivants (json (?) )
 - Affichage :
-    - console
-    - interface graphique
-- architecture MVC https://fr.m.wikipedia.org/wiki/Mod%C3%A8le-vue-contr%C3%B4leur
-### fichiers de code python, 
-- Modèle vue contrôle
-- Modèle.py
-- Vue graphique.py
-- Contrôle console.py
-- Contrôle graphique.py
-- Logiciel console.py
-- Logiciel graphique.py
+    - ~~console~~
+    - ~~interface graphique~~
+    - jupyter notebook
+        - brut
+        - avec des widgets
+- ~~architecture MVC https://fr.m.wikipedia.org/wiki/Mod%C3%A8le-vue-contr%C3%B4leur~~
+## fichiers de code python,
+~~- Modèle vue contrôle~~
+~~- Modèle.py~~
+~~- Vue graphique.py~~
+~~- Contrôle console.py~~
+~~- Contrôle graphique.py~~
+~~- Logiciel console.py~~
+~~- Logiciel graphique.py~~
+- generateur_article.ipynb
 
 ## Ressources, cours openclasseroom
 - https://openclassrooms.com/fr/courses/4425111-perfectionnez-vous-en-python/4463200-organisez-un-script
@@ -47,16 +52,23 @@ création : 1 novembre 2021
 
 ## Spécificités
 ### Entrée
-- 1 txt
-- Plusieurs txt
-- Format d'entrée : txt, autre ?
+- [x] nombre de fichier au choix.
+- Format d'entrée :
+    - [x] .txt
+    - [ ] autre ?
+#### User story
+L'utilisataires doit pouvoir ajouter des textes de différentes sources :
+- [x] Via wikipédia
+- [ ] Via une URL standard, plusieurs url
+- [x] via des fichiers txt déposé directemlent dans dossier "vrai_texte"
+A partir pdf, Doc....
 ### Sortie
-- Écran
-- Fichier txt PDF
+- [x] Écran (dans notebook)
+- [x] Fichier .txt (dans 'textes_generes')
 - Faire un ou plusieurs textes
 ### Gestion de la ponctuation
-Version test : non géré, la supprimer
-Version améliorée : prise en compte
+- Version test : non gérée, la supprimer
+- Version améliorée : prise en compte
 ### Texte généré
 - Quel est le premier mot ? Hasard, les plus fréquents
 - Taille ? Hasard, moyenne, le plus grand, le plus petit ? -> besoin de le mesurer stocker
